@@ -2,7 +2,6 @@ import { NestFactory } from "@nestjs/core";
 import { ValidationPipe } from "@nestjs/common";
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 import * as dotenv from "dotenv";
-import * as cookieParser from "cookie-parser";
 import * as bodyParser from "body-parser";
 import { AppModule } from "./app.module";
 import "reflect-metadata";
@@ -13,8 +12,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { bodyParser: false });
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(cookieParser(process.env.COOKIE_SECRET));
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.enableCors();
   const config = new DocumentBuilder()
     .setTitle("OpenidProvider")
