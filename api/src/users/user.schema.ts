@@ -9,7 +9,7 @@ export class User extends Document {
   @Prop({ type: String })
   createdAt: Date;
 
-  @Prop({ type: String, required: true, index: true, unique: true })
+  @Prop({ type: String, required: true, unique: true })
   email: string;
 
   @Prop({ type: String})
@@ -24,7 +24,7 @@ export class User extends Document {
   @Prop({ type: String })
   modifiedAt: Date;
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, select: false })
   password: string;
 }
 
