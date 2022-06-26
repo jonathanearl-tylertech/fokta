@@ -1,18 +1,18 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model, FilterQuery } from 'mongoose';
-import { EncryptService } from './services/encrypt.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { SearchUserDto } from './dto/search-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { User, UserDocument } from './user.schema';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model, FilterQuery } from "mongoose";
+import { EncryptService } from "./services/encrypt.service";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { SearchUserDto } from "./dto/search-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { User, UserDocument } from "./user.schema";
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly user: Model<UserDocument>,
-    private readonly encrypt: EncryptService,
-  ) { }
+    private readonly encrypt: EncryptService
+  ) {}
 
   async create(createUserDto: CreateUserDto) {
     const hash = await this.encrypt.hash(createUserDto.password);
@@ -22,9 +22,9 @@ export class UsersService {
   async findAll(searchUserDto: SearchUserDto) {
     const { email, firstName, lastName } = searchUserDto;
     const filter: FilterQuery<UserDocument> = {};
-    if (email) filter.email = new RegExp(email, 'i');
-    if (firstName) filter.firstName = new RegExp(firstName, 'i');
-    if (lastName) filter.lastName = new RegExp(lastName, 'i');
+    if (email) filter.email = new RegExp(email, "i");
+    if (firstName) filter.firstName = new RegExp(firstName, "i");
+    if (lastName) filter.lastName = new RegExp(lastName, "i");
     return this.user.find(filter);
   }
 

@@ -2,11 +2,10 @@ import { Controller, Get } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { JWSService } from "src/services/jws.service";
 
-@ApiTags('oauth')
-@Controller('oauth2/v1/keys')
+@ApiTags("oauth")
+@Controller("oauth2/v1/keys")
 export class JwksController {
-
-  constructor(private readonly jws: JWSService ) {}
+  constructor(private readonly jws: JWSService) {}
 
   @Get()
   async jwks() {

@@ -1,21 +1,21 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from "@nestjs/swagger";
 
 export class UserDto {
   @ApiProperty({ type: Date })
-    createdAt: Date;
+  createdAt: Date;
 
   @ApiProperty({ type: String })
-    email: string;
+  email: string;
 
   @ApiProperty({ type: String })
-    firstName: string;
+  firstName: string;
 
   @ApiProperty({ type: String })
-    _id: string;
+  _id: string;
 
   @ApiProperty({ type: String })
-    lastName: string;
+  lastName: string;
 
   @ApiProperty({ type: Date })
-    modifiedAt: Date;
+  modifiedAt: Date;
 }

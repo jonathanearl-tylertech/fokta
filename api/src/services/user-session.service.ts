@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { UserSession } from '../interfaces/UserSession';
-import { Uuid } from './uuid.service';
+import { Injectable } from "@nestjs/common";
+import { UserSession } from "../interfaces/UserSession";
+import { Uuid } from "./uuid.service";
 
 // todo: move to redis implementation
 @Injectable()
