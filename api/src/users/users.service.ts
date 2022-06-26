@@ -9,11 +9,6 @@ import { User, UserDocument } from "./user.schema";
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectModel(User.name) private readonly user: Model<UserDocument>,
-    private readonly encrypt: EncryptService
-  ) {}
-
   async create(createUserDto: CreateUserDto) {
     const hash = await this.encrypt.hash(createUserDto.password);
     return this.user.create({ ...createUserDto, password: hash });
@@ -39,4 +34,9 @@ export class UsersService {
   async remove(id: string) {
     return this.user.findByIdAndDelete(id);
   }
+
+  constructor(
+    private readonly encrypt: EncryptService,
+    @InjectModel(User.name) private readonly user: Model<UserDocument>
+  ) {}
 }
