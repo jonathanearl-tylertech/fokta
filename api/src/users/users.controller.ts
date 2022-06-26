@@ -25,11 +25,9 @@ import { SearchUserDto } from "./dto/search-user.dto";
 import { UserDto } from "./dto/user.dto";
 
 @ApiTags("users")
-@Controller("users")
+@Controller("api/v1/users")
 @UseFilters(MongoExceptionFilter)
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
-
   @Post()
   @ApiConflictResponse()
   @ApiOkResponse({ type: UserDto })
@@ -64,4 +62,6 @@ export class UsersController {
   async remove(@Param("id") id: string) {
     return await this.usersService.remove(id);
   }
+
+  constructor(private readonly usersService: UsersService) {}
 }
