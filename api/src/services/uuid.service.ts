@@ -3,5 +3,5 @@ import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class Uuid {
-  generate = () => uuidv4()
+  generate = () => uuidv4();
 }

@@ -4,21 +4,21 @@ import { IsOptional } from 'class-validator';
 export class SearchUserDto {
   @ApiProperty({ type: String })
   @IsOptional()
-  email?: string;
+    email?: string;
 
   @ApiProperty({ type: String })
   @IsOptional()
-  firstName?: string;
+    firstName?: string;
 
   @ApiProperty({ type: String })
   @IsOptional()
-  lastName?: string;
+    lastName?: string;
 
   @ApiProperty({ type: Number, default: 10 })
   @IsOptional()
-  limit?: number;
-  
+    limit?: number;
+
   @ApiProperty({ type: Number, default: 0 })
   @IsOptional()
-  skip?: number;
+    skip?: number;
 }

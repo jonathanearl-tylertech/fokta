@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, FilterQuery } from 'mongoose';
-import { PasswordService } from 'src/services/password.service';
+import { EncryptService } from './services/encrypt.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { SearchUserDto } from './dto/search-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -11,13 +11,12 @@ import { User, UserDocument } from './user.schema';
 export class UsersService {
   constructor(
     @InjectModel(User.name) private readonly user: Model<UserDocument>,
-    private readonly pwd: PasswordService,
+    private readonly encrypt: EncryptService,
   ) { }
 
   async create(createUserDto: CreateUserDto) {
-    const hash = await this.pwd.hash(createUserDto.password);
-    const user = await this.user.create({ ...createUserDto, password: hash })
-    return user.toObject();
+    const hash = await this.encrypt.hash(createUserDto.password);
+    return this.user.create({ ...createUserDto, password: hash });
   }
 
   async findAll(searchUserDto: SearchUserDto) {
@@ -26,18 +25,18 @@ export class UsersService {
     if (email) filter.email = new RegExp(email, 'i');
     if (firstName) filter.firstName = new RegExp(firstName, 'i');
     if (lastName) filter.lastName = new RegExp(lastName, 'i');
-    return await this.user.find(filter).lean();
+    return this.user.find(filter);
   }
 
   async findOne(id: string) {
-    return await this.user.findOne({ id }).lean();
+    return this.user.findById(id);
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    return await this.user.findOneAndUpdate({ id }, updateUserDto).lean();
+    return this.user.findByIdAndUpdate(id, updateUserDto);
   }
 
   async remove(id: string) {
-    return await this.user.findOneAndRemove({ id }).lean();
+    return this.user.findByIdAndDelete(id);
   }
 }
