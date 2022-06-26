@@ -9,14 +9,15 @@ import { MongoError } from "mongodb";
 
 @Catch(MongoError)
 export class MongoExceptionFilter implements ExceptionFilter {
-  catch(exception: MongoError, host: ArgumentsHost) {
+  catch(err: MongoError, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
-    switch (exception.code) {
+    switch (err.code) {
       case 11000:
+        console.error(err);
         return response.status(409).json({
-          keys: Object.keys(exception.keyValue),
-          values: Object.values(exception.keyValue),
+          // keys: Object.keys(exception.keyValue),
+          // values: Object.values(exception.keyValue),
           msg: "One or more keys are in use",
         });
       default:
