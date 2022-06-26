@@ -10,11 +10,6 @@ import {
 
 export class CreateUserDto {
   @ApiProperty({ type: String })
-  @IsUUID()
-  @IsOptional()
-  id: string;
-
-  @ApiProperty({ type: String })
   @IsEmail()
   @IsNotEmpty()
   email: string;
@@ -34,7 +29,7 @@ export class CreateUserDto {
     maxLength: 256,
   })
   @MinLength(3)
-  @MaxLength(24)
+  @MaxLength(256)
   password: string;
 
   @ApiProperty({
