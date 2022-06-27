@@ -1,33 +1,39 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class ClientDto {
-  @ApiProperty({ type: Boolean })
-  allowAuthorizationCodeFlow: boolean;
-
-  @ApiProperty({ type: Boolean })
-  allowClientCredentialFlow: boolean;
+  @ApiProperty({ type: String })
+  application_type: string;
 
   @ApiProperty({ type: String })
-  clientId: string;
-
-  @ApiProperty({ type: String })
-  clientSecret: string;
-  
-  @ApiProperty({ type: String })
-  _id: string;
+  client_id: string;
 
   @ApiProperty({ type: Date })
-  modifiedAt: Date;
+  client_id_issued_at: Date;
 
   @ApiProperty({ type: String })
-  name: string;
+  client_secret: string;
 
-  @ApiProperty({ type: [String] })
-  signInRedirectUris: [string];
+  @ApiProperty({ type: Date })
+  client_secret_expires_at: Date;
 
-  @ApiProperty({ type: [String] })
-  signOutRedirectUris: [string];
+  @ApiProperty({ type: String })
+  client_name: string;
 
-  @ApiProperty( { type: Number, description: 'version' })
-  __v: number;
+  @ApiProperty({ type: String })
+  client_uri: string;
+
+  @ApiProperty({ type: String, isArray: true })
+  redirect_uris: [string];
+
+  @ApiProperty({ type: String, isArray: true })
+  post_logout_redirect_uris: [string];
+
+  @ApiProperty({ type: String, isArray: true })
+  response_types: [string];
+
+  @ApiProperty({ type: String, isArray: true })
+  grant_types: [string];
+
+  @ApiProperty({ type: String })
+  token_endpoint_auth_method: string;
 }

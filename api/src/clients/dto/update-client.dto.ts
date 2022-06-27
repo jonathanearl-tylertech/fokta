@@ -17,6 +17,5 @@ export class AdditionalClientInfo {
 
 export class UpdateClientDto extends IntersectionType(
   CreateClientDto,
-  AdditionalClientInfo,
+  AdditionalClientInfo
 ) {}
-

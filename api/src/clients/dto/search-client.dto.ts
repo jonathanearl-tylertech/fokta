@@ -6,5 +6,5 @@ export class SearchClientDto {
   @IsOptional()
   @MinLength(1)
   @MaxLength(256)
-  name?: string;
+  client_name?: string;
 }

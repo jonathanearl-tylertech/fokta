@@ -61,8 +61,8 @@ export class TokenController {
     if (!doc) throw new NotFoundException();
 
     const idToken = {
-      sub: doc.id,
-      email: doc.email,
+      sub: doc._id,
+      email: doc.profile.email,
       iss: "auth-server",
       aud: "fig",
       exp: Date.now() + 60 * 5,
