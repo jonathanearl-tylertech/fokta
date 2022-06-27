@@ -14,12 +14,7 @@ export class MongoExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     switch (err.code) {
       case 11000:
-        console.error(err);
-        return response.status(409).json({
-          // keys: Object.keys(exception.keyValue),
-          // values: Object.values(exception.keyValue),
-          msg: "One or more keys are in use",
-        });
+        return response.status(409).send(err.message);
       default:
         throw new InternalServerErrorException(
           "Something went wrong, please try again later"
