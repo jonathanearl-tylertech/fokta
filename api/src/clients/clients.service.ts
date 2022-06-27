@@ -5,7 +5,6 @@ import { Uuid } from "src/services/uuid.service";
 import { Clients, ClientsDocument } from "./clients.schema";
 import { CreateClientDto } from "./dto/create-client.dto";
 import { SearchClientDto } from "./dto/search-client.dto";
-import { UpdateClientDto } from "./dto/update-client.dto";
 
 @Injectable()
 export class ClientsService {
@@ -30,7 +29,7 @@ export class ClientsService {
     return this.clients.findById(new Types.ObjectId(id))
   }
 
-  async update(id: string, doc: UpdateClientDto) {
+  async update(id: string, doc: Clients) {
     return this.clients.findByIdAndUpdate(new Types.ObjectId(id), doc);
   }
 

@@ -1,21 +1,33 @@
-import { IntersectionType } from "@nestjs/mapped-types";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsOptional } from "class-validator";
-import { CreateClientDto } from "./create-client.dto";
+import { IsDate, IsNotEmpty, IsOptional, MaxLength, MinLength } from "class-validator";
 
-export class AdditionalClientInfo {
-  @ApiProperty({ type: [String], default: () => [] })
-  @IsArray()
+export class UpdateClientDto {
+  @ApiProperty({ type: Date })
   @IsOptional()
-  signInRedirectUris: [string];
+  @IsDate()
+  client_secret_expires_at: Date;
 
-  @ApiProperty({ type: [String], default: () => [] })
-  @IsArray()
-  @IsOptional()
-  signOutRedirectUris: [string];
+  @ApiProperty({ type: String })
+  @MinLength(3)
+  @MaxLength(256)
+  @IsNotEmpty()
+  client_name: string;
+
+  @ApiProperty({ type: String })
+  client_uri: string;
+
+  @ApiProperty({ type: String, isArray: true })
+  grant_types: [string];
+
+  @ApiProperty({ type: String, isArray: true })
+  post_logout_redirect_uris: [string];
+
+  @ApiProperty({ type: String, isArray: true })
+  redirect_uris: [string];
+
+  @ApiProperty({ type: String, isArray: true })
+  response_types: [string];
+
+  @ApiProperty({ type: String })
+  token_endpoint_auth_method: string;
 }
-
-export class UpdateClientDto extends IntersectionType(
-  CreateClientDto,
-  AdditionalClientInfo
-) {}

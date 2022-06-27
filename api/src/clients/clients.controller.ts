@@ -48,8 +48,8 @@ export class ClientsController {
 
   @Patch(":id")
   @ApiOkResponse({ type: ClientDto })
-  async update(@Param("id") id: string, @Body() doc: UpdateClientDto) {
-    const client = await this.clientsService.update(id, doc);
+  async update(@Param("id") id: string, @Body() body: UpdateClientDto) {
+    const client = await this.clientsService.update(id, body as Clients);
     return this.clientToDto(client);
   }
 
@@ -77,6 +77,5 @@ export class ClientsController {
       token_endpoint_auth_method: client.token_endpoint_auth_method,
     } as ClientDto;
   }
-
   constructor(private readonly clientsService: ClientsService) {}
 }

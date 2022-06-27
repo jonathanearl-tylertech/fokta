@@ -23,16 +23,16 @@ export class ClientDto {
   client_uri: string;
 
   @ApiProperty({ type: String, isArray: true })
-  redirect_uris: [string];
+  grant_types: [string];
 
   @ApiProperty({ type: String, isArray: true })
   post_logout_redirect_uris: [string];
 
   @ApiProperty({ type: String, isArray: true })
-  response_types: [string];
+  redirect_uris: [string];
 
   @ApiProperty({ type: String, isArray: true })
-  grant_types: [string];
+  response_types: [string];
 
   @ApiProperty({ type: String })
   token_endpoint_auth_method: string;
