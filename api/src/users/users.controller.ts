@@ -47,7 +47,7 @@ export class UsersController {
   @Get(":id")
   @ApiOkResponse({ type: UserDto })
   async findOne(@Param("id") id: string) {
-    return this.usersService.findOne(id);
+    return await this.usersService.findOne(id);
   }
 
   @Patch(":id")

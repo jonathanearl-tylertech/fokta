@@ -19,6 +19,6 @@ export class UserDto {
   @ApiProperty({ type: Date })
   modifiedAt: Date;
 
-  @ApiProperty( { type: Number, description: 'version' })
+  @ApiProperty({ type: Number, description: "version" })
   __v: number;
 }
