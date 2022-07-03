@@ -13,6 +13,7 @@ import { JWSService } from "./services/jws.service";
 import { JWEService } from "./services/jwe.service";
 import { UsersModule } from "./users/users.module";
 import { ClientsModule } from "./clients/clients.module";
+import { SessionModule } from './session/session.module';
 
 @Module({
   controllers: [
@@ -26,6 +27,7 @@ import { ClientsModule } from "./clients/clients.module";
     MongooseModule.forRoot("mongodb://localhost/openid"),
     UsersModule,
     ClientsModule,
+    SessionModule,
   ],
   providers: [
     CodeSessionService,
