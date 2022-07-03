@@ -13,6 +13,7 @@ import { JWSService } from "./services/jws.service";
 import { JWEService } from "./services/jwe.service";
 import { UsersModule } from "./users/users.module";
 import { ClientsModule } from "./clients/clients.module";
+import { OauthModule } from './oauth/oauth.module';
 import { SessionModule } from './session/session.module';
 
 @Module({
@@ -27,6 +28,7 @@ import { SessionModule } from './session/session.module';
     MongooseModule.forRoot("mongodb://localhost/openid"),
     UsersModule,
     ClientsModule,
+    OauthModule,
     SessionModule,
   ],
   providers: [

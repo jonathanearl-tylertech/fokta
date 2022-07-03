@@ -5,6 +5,9 @@ import * as dotenv from "dotenv";
 import * as bodyParser from "body-parser";
 import { AppModule } from "./app.module";
 import "reflect-metadata";
+import { promises as fs } from 'fs';
+import { join } from 'path';
+import { cwd } from "process";
 
 dotenv.config();
 
@@ -15,12 +18,12 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.enableCors();
   const config = new DocumentBuilder()
-    .setTitle("OpenidProvider")
+    .setTitle("fokta")
     .setDescription("An identity abstraction")
     .setVersion("1.0")
     .build();
-
   const document = SwaggerModule.createDocument(app, config);
+  await fs.writeFile(join(cwd(), '../api-sdk/openapi.json'), JSON.stringify(document))
   SwaggerModule.setup("swagger", app, document);
   await app.listen(process.env.PORT, () => {
     console.log(`now running on http://localhost:${process.env.PORT}`);

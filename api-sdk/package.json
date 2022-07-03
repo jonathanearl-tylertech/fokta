@@ -1,0 +1,19 @@
+{
+  "name": "api-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "openapi --input ./openapi.json --output ./dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node": "^10.8.2"
+  },
+  "devDependencies": {
+    "openapi-typescript-codegen": "^0.23.0"
+  }
+}
