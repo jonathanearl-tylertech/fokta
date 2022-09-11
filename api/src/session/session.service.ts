@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { Uuid } from '../services/uuid.service';
-import { CreateSessionDto } from './dto/create-session.dto';
-import { UpdateSessionDto } from './dto/update-session.dto';
+import { Injectable } from "@nestjs/common";
+import { Uuid } from "../services/uuid.service";
+import { CreateSessionDto } from "./dto/create-session.dto";
+import { UpdateSessionDto } from "./dto/update-session.dto";
 
 @Injectable()
 export class SessionService {
-  session:any = {};
+  session: any = {};
 
   create(createSessionDto: CreateSessionDto) {
     const { uid } = createSessionDto;
@@ -29,8 +29,8 @@ export class SessionService {
   update(id: string, updateSessionDto: UpdateSessionDto) {
     this.session[id] = {
       ...this.session[id],
-      ...updateSessionDto
-    }
+      ...updateSessionDto,
+    };
     return this.session[id];
   }
 

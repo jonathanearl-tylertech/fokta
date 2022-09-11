@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
-import { v4 as uuidv4 } from "uuid";
 
 @Schema({ timestamps: true })
 export class Clients extends Document {
@@ -25,7 +24,7 @@ export class Clients extends Document {
   @Prop({ typeSchema: Date })
   createdAt: Date;
 
-  @Prop({ type: Types.ObjectId, select: false,  })
+  @Prop({ type: Types.ObjectId, select: false })
   _id: string;
 
   @Prop({ type: Date })
@@ -44,7 +43,7 @@ export class Clients extends Document {
   response_types: [string];
 
   @Prop({ type: String })
-  token_endpoint_auth_method
+  token_endpoint_auth_method;
 
   @Prop({ type: [String] })
   grant_types: [string];

@@ -1,15 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { SessionService } from './session.service';
-import { CreateSessionDto } from './dto/create-session.dto';
-import { UpdateSessionDto } from './dto/update-session.dto';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from "@nestjs/common";
+import { SessionService } from "./session.service";
+import { CreateSessionDto } from "./dto/create-session.dto";
+import { UpdateSessionDto } from "./dto/update-session.dto";
+import { ApiTags } from "@nestjs/swagger";
 
-@ApiTags('session')
-@Controller('api/v1/session')
+@ApiTags("session")
+@Controller("api/v1/session")
 export class SessionController {
   @Post()
   create(@Body() createSessionDto: CreateSessionDto) {
-    return this.sessionService.create(createSessionDto)
+    return this.sessionService.create(createSessionDto);
   }
 
   @Get()
@@ -17,18 +25,18 @@ export class SessionController {
     return this.sessionService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(":id")
+  findOne(@Param("id") id: string) {
     return this.sessionService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSessionDto: UpdateSessionDto) {
+  @Patch(":id")
+  update(@Param("id") id: string, @Body() updateSessionDto: UpdateSessionDto) {
     return this.sessionService.update(id, updateSessionDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete(":id")
+  remove(@Param("id") id: string) {
     return this.sessionService.remove(id);
   }
 

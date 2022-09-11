@@ -1,5 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsNotEmpty, IsOptional, MaxLength, MinLength } from "class-validator";
+import {
+  IsDate,
+  IsNotEmpty,
+  IsOptional,
+  MaxLength,
+  MinLength,
+} from "class-validator";
 
 export class UpdateClientDto {
   @ApiProperty({ type: Date })

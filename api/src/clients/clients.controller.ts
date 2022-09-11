@@ -34,15 +34,14 @@ export class ClientsController {
   @ApiOkResponse({ type: ClientDto, isArray: true })
   async findAll(@Query() query: SearchClientDto) {
     const clients = await this.clientsService.findAll(query);
-    return clients.map(c => this.clientToDto(c));
+    return clients.map((c) => this.clientToDto(c));
   }
 
   @Get(":id")
   @ApiOkResponse({ type: ClientDto })
   async findOne(@Param("id") id: string) {
     const client = await this.clientsService.findOne(id);
-    if (!client)
-      throw new NotFoundException(id);
+    if (!client) throw new NotFoundException(id);
     return this.clientToDto(client);
   }
 
@@ -57,8 +56,7 @@ export class ClientsController {
   @ApiNoContentResponse()
   async remove(@Param("id") id: string) {
     const client = this.clientsService.remove(id);
-    if (!client)
-      throw new NotFoundException(id);
+    if (!client) throw new NotFoundException(id);
   }
 
   clientToDto(client: Clients) {

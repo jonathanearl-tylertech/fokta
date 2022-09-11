@@ -22,11 +22,11 @@ export class ClientsService {
     const { client_name } = search;
     const filter: FilterQuery<ClientsDocument> = {};
     if (client_name) filter.name = new RegExp(client_name, "i");
-    return this.clients.find(filter)
+    return this.clients.find(filter);
   }
 
   async findOne(id: string) {
-    return this.clients.findById(new Types.ObjectId(id))
+    return this.clients.findById(new Types.ObjectId(id));
   }
 
   async update(id: string, doc: Clients) {
@@ -40,5 +40,5 @@ export class ClientsService {
   constructor(
     @InjectModel(Clients.name) private readonly clients: Model<ClientsDocument>,
     private readonly uuid: Uuid
-  ) { }
+  ) {}
 }

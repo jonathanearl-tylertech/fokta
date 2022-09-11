@@ -9,17 +9,12 @@ import {
 @Injectable()
 export class ContainsRule implements ValidatorConstraintInterface {
   validate(value: any, args: ValidationArguments) {
-    if (Array.isArray(value))
-    {
-      for(let v of value)
-      {
-        if (!args.constraints.includes(v))
-          return false;
+    if (Array.isArray(value)) {
+      for (const v of value) {
+        if (!args.constraints.includes(v)) return false;
       }
       return true;
-    }
-    else
-    {
+    } else {
       return args.constraints.includes(value);
     }
   }
