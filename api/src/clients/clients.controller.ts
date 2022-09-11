@@ -11,7 +11,6 @@ import {
   NotFoundException,
 } from "@nestjs/common";
 import { ApiNoContentResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
-import { MongoExceptionFilter } from "src/filters/mongo-exception.filter";
 import { Clients } from "./clients.schema";
 import { ClientsService } from "./clients.service";
 import { ClientDto } from "./dto/client.dto";
@@ -21,7 +20,6 @@ import { UpdateClientDto } from "./dto/update-client.dto";
 
 @ApiTags("clients")
 @Controller("api/v1/clients")
-@UseFilters(MongoExceptionFilter)
 export class ClientsController {
   @Post()
   @ApiOkResponse({ type: ClientDto })

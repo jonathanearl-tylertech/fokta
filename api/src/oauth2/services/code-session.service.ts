@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { CodeSession } from "src/interfaces/CodeSession";
+import { CodeSession } from "../interfaces/CodeSession";
 import { Uuid } from "src/services/uuid.service";
 
 // todo: move to redis implementation

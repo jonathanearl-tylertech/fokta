@@ -1,6 +1,6 @@
 import { Controller, Get } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { JWSService } from "src/services/jws.service";
+import { JWSService } from "../services/jws.service";
 
 @ApiTags("oauth")
 @Controller("oauth2/v1/keys")

@@ -17,7 +17,6 @@ import {
   ApiQuery,
   ApiTags,
 } from "@nestjs/swagger";
-import { MongoExceptionFilter } from "src/filters/mongo-exception.filter";
 import { UsersService } from "./users.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
@@ -26,7 +25,6 @@ import { UserDto } from "./dto/user.dto";
 
 @ApiTags("users")
 @Controller("api/v1/users")
-@UseFilters(MongoExceptionFilter)
 export class UsersController {
   @Post()
   @ApiConflictResponse()

@@ -10,11 +10,10 @@ import {
   UseFilters,
 } from "@nestjs/common";
 import { ApiConflictResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
-import { MongoExceptionFilter } from "src/filters/mongo-exception.filter";
 import { Request, Response } from "express";
-import { TokenRequestDto } from "src/dtos/token-request.dto";
-import { CodeSessionService } from "src/services/code-session.service";
-import { JWSService } from "src/services/jws.service";
+import { TokenRequestDto } from "src/oauth2/dtos/token-request.dto";
+import { CodeSessionService } from "../services/code-session.service";
+import { JWSService } from "../services/jws.service";
 import { UsersService } from "src/users/users.service";
 
 @ApiTags("oauth")
@@ -29,7 +28,6 @@ export class TokenController {
   @Post()
   @ApiConflictResponse()
   @ApiOkResponse({ type: String })
-  @UseFilters(MongoExceptionFilter)
   async create(
     @Body() body: TokenRequestDto,
     @Res() res: Response,
